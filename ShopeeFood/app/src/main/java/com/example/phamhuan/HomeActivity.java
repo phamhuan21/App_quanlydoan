@@ -24,6 +24,7 @@ import com.example.phamhuan.Fragment.ProfileFragment;
 
 import static androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT;
 
+
 public class HomeActivity extends AppCompatActivity {
 
     private BottomNavigationView navigation;
@@ -101,7 +102,11 @@ public class HomeActivity extends AppCompatActivity {
                 } else if (viewPager.getCurrentItem() == 3) {
                     toolbar.setTitle("Profile");
                 } else {
-                    toolbar.setTitle("Shopeefood");
+                    if(Constant.AdminLogin.equals("true")){
+                        toolbar.setTitle("--- Admin Dashboard ---");
+                    } else {
+                        toolbar.setTitle("Shopeefood");
+                    }
                 }
             }
 

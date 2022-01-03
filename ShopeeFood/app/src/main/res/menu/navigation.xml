@@ -4,21 +4,21 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home"
-        android:title="@string/home" />
+        android:title="Trang chủ" />
 
     <item
         android:id="@+id/navigation_category"
         android:icon="@drawable/ic_order"
-        android:title="@string/order" />
+        android:title="Đơn hàng" />
 
     <item
         android:id="@+id/navigation_video"
         android:icon="@drawable/ic_cart"
-        android:title="@string/cart" />
+        android:title="Giỏ hàng" />
 
     <item
         android:id="@+id/navigation_favorite"
         android:icon="@drawable/ic_account"
-        android:title="@string/account" />
+        android:title="Tài khoản" />
 
 </menu>

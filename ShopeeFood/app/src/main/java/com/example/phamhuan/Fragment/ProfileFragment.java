@@ -99,7 +99,11 @@ public class ProfileFragment extends Fragment {
                 Utils.setValue(getContext(),Constant.IsLogin,"LogStatus");
                 Utils.setValue(getContext(),Constant.Mobile,"Phone");
                 Utils.setValue(getContext(),Constant.Password,"Password");
+                if(Constant.Phone == "0968646031") {
+                    Utils.setValue(getContext(), Constant.AdminLogin, "false");
+                }
                 Intent login = new Intent(getContext(), MainActivity.class);
+
                 Utils.currentUser = null; startActivity(login);
 
             }
