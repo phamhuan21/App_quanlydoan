@@ -5,6 +5,7 @@ public class Constant {
     public static final String UserBucket = "User";
     public static final String OrderBucket = "Orders";
     public static final String Mobile = "Mobile";
+    public static String AdminLogin = "false";
     public static final String Password = "Password";
     public static final String IsLogin = "LogStatus";
     public static final String IsFirstTime = "FirstTime";

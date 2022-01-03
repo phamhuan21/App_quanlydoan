@@ -1,8 +1,5 @@
 package com.example.phamhuan;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,12 +9,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.phamhuan.ModelClass.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.example.phamhuan.ModelClass.User;
 
 import java.util.Objects;
 
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         TextView goregister = findViewById(R.id.gosignup);
         TextView goforget = findViewById(R.id.txtforgot);
         Button btnLogin = findViewById(R.id.btnSignIn);
+        TextView adminLogin = findViewById(R.id.adminlog);
         // Forget page view
         forPhone = findViewById(R.id.forPhone);
         Button btnForget = findViewById(R.id.btnForgot);
@@ -53,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
         regPassword = findViewById(R.id.regPassword);
         TextView gologin = findViewById(R.id.gosignin);
         Button btnRegister = findViewById(R.id.btnSignUp);
+
+        adminLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,AdminLoginActivity.class);
+                startActivity(intent);
+            }
+        });
         gologin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

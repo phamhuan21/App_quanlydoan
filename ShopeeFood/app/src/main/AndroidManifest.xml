@@ -14,12 +14,15 @@
         android:roundIcon="@mipmap/logo_circle"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.phamhuan.CategoryActivity"></activity>
-        <activity android:name="com.example.phamhuan.PaymentActivity" />
-        <activity android:name="com.example.phamhuan.FoodlistActivity" />
-        <activity android:name="com.example.phamhuan.HomeActivity" />
-        <activity android:name="com.example.phamhuan.MainActivity" />
-        <activity android:name="com.example.phamhuan.SplashActivity">
+        <activity
+            android:name=".AdminLoginActivity"
+            android:exported="false" />
+        <activity android:name=".CategoryActivity" />
+        <activity android:name=".PaymentActivity" />
+        <activity android:name=".FoodlistActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
