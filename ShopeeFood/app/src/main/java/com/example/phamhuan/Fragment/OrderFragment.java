@@ -77,8 +77,8 @@ public class OrderFragment extends Fragment {
     }
 
     private void loadOrderList() {
-//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(Constant.OrderBucket).child(Utils.currentUser.getPhone());
-////        databaseReference.keepSynced(false);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(Constant.OrderBucket).child(Utils.currentUser.getPhone());
+        databaseReference.keepSynced(false);
         DatabaseReference personsRef = FirebaseDatabase.getInstance().getReference().child(Constant.OrderBucket).child(Utils.currentUser.getPhone());
         final Query personsQuery = personsRef.orderByKey();
         final FirebaseRecyclerOptions<Order> personsOptions = new FirebaseRecyclerOptions.Builder<Order>().setQuery(personsQuery,Order.class).build();

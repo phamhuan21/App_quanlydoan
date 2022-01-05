@@ -15,17 +15,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:title="Thêm nhà hàng" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/img_name_1"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/profileimg"
-        app:civ_border_color="#08D3DF"
-        app:civ_border_width="2dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/logo_circle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/add_product_toolbar" />
 
 
     <ScrollView
@@ -50,8 +48,6 @@
                 android:padding="10dp"
                 android:text="Chọn ảnh nhà hàng"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:fontFamily="@font/shopee2021regular"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +66,6 @@
                 android:drawableLeft="@drawable/ic_baseline_title_24"
                 android:drawablePadding="10dp"
                 android:hint="Tên nhà hàng"
-                android:fontFamily="@font/shopee2021regular"
                 android:padding="10dp"
                 android:textColorHint="#565656"
                 android:textSize="20dp"
@@ -90,7 +85,6 @@
                 android:background="@drawable/input_product"
                 android:drawableLeft="@drawable/ic_baseline_location_on_24"
                 android:drawablePadding="10dp"
-                android:fontFamily="@font/shopee2021regular"
                 android:hint="Địa chỉ"
                 android:padding="10dp"
                 android:textColorHint="#565656"
@@ -105,7 +99,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/shopee2021regular"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/input_product"
                 android:drawableLeft="@drawable/ic_baseline_access_time_24"
@@ -118,28 +111,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/add_desc_product"
                 app:layout_constraintStart_toStartOf="@+id/add_desc_product"
                 app:layout_constraintTop_toBottomOf="@+id/add_desc_product" />
-
             <EditText
-                android:id="@+id/add_distance"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/shopee2021regular"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/input_product"
-                android:drawableLeft="@drawable/ic_baseline_show_chart_24"
-                android:drawablePadding="10dp"
-                android:hint="Khoảng cách"
-                android:inputType="number"
-                android:padding="10dp"
-                android:textColorHint="#565656"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="@+id/add_desc_product"
-                app:layout_constraintStart_toStartOf="@+id/add_desc_product"
-                app:layout_constraintTop_toBottomOf="@+id/add_desc_product" />
-
-            <TextView
                 android:id="@+id/add_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -149,50 +121,17 @@
                 android:layout_marginRight="10dp"
                 android:drawablePadding="10dp"
                 android:drawableLeft="@drawable/ic_baseline_restaurant_menu_24"
-                android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
                 android:hint="Trạng thái"
                 android:padding="10dp"
                 android:textSize="20dp"
-                android:fontFamily="@font/shopee2021regular"
                 android:textColorHint="#565656"
                 app:layout_constraintEnd_toEndOf="@+id/img_icon"
                 app:layout_constraintStart_toStartOf="@+id/img_icon"
                 app:layout_constraintTop_toBottomOf="@+id/img_icon" />
 
-            <TextView
-                android:id="@+id/add_type"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/input_product"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"
-                android:drawablePadding="10dp"
-                android:drawableLeft="@drawable/ic_baseline_density_medium_24"
-                android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
-                android:hint="Loại nhà hàng"
-                android:padding="10dp"
-                android:textSize="20dp"
-                android:fontFamily="@font/shopee2021regular"
-                android:textColorHint="#565656"
-                app:layout_constraintEnd_toEndOf="@+id/img_icon"
-                app:layout_constraintStart_toStartOf="@+id/img_icon"
-                app:layout_constraintTop_toBottomOf="@+id/img_icon" />
 
-            <Button
-                android:id="@+id/btn_addtype"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/bg_screen2"
-                android:padding="10dp"
-                android:text="Thêm"
-                android:textStyle="bold"
-                android:textAllCaps="false"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/add_type"
-                app:layout_constraintStart_toEndOf="@+id/add_type"
-                app:layout_constraintTop_toTopOf="@+id/add_type" />
+
+
 
             <Button
                 android:id="@+id/add_restaurant"
@@ -200,13 +139,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/shopee2021regular"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/red"
                 android:padding="15dp"
                 android:text="Thêm nhà hàng"
                 android:textSize="20sp"
-                android:textColor="@color/white"
                 android:textAllCaps="false"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"

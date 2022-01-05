@@ -122,15 +122,18 @@ public class SplashActivity extends AppCompatActivity {
                             Utils.setValue(SplashActivity.this,Constant.IsLogin,Constant.IsLogin);
                             Utils.setValue(SplashActivity.this,Constant.Mobile,phone);
                             Utils.setValue(SplashActivity.this,Constant.Password,password);
+                            if(phone.equals("0968646031")){
+                                Constant.AdminLogin = "true";
+                            }
                             Intent home = new Intent(SplashActivity.this, HomeActivity.class);
                             Utils.currentUser = user; startActivity(home); finish();
                         } else {
-                            Utils.showToast(SplashActivity.this, "Somthing went wrong");
+                            Utils.showToast(SplashActivity.this, "");
                             startActivity(new Intent(SplashActivity.this, MainActivity.class));
                             finish();
                         }
                     } else {
-                        Utils.showToast(SplashActivity.this, "Somthing went wrong");
+                        Utils.showToast(SplashActivity.this, "");
                         startActivity(new Intent(SplashActivity.this, MainActivity.class));
                         finish();
                     }

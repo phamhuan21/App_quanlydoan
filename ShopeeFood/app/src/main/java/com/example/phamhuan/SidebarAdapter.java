@@ -31,9 +31,17 @@ public class SidebarAdapter extends RecyclerView.Adapter<SidebarAdapter.UserView
         this.titleList = new ArrayList<>();
         this.iconList = new ArrayList<>();
         this.subtitleList = new ArrayList<>();
-        titleList.add("Join Us");titleList.add("Privacy Policy");titleList.add("Share App");titleList.add("Contact Us");titleList.add("Rate Us");titleList.add("Terms and Conditions");titleList.add("About Us");
-        iconList.add(R.drawable.ic_vendor);iconList.add(R.drawable.lock);iconList.add(R.drawable.share);iconList.add(R.drawable.email);iconList.add(R.drawable.rate);iconList.add(R.drawable.term);iconList.add(R.drawable.info);
-        subtitleList.add("Join as a Vendor");subtitleList.add("Terms & Policies");subtitleList.add("Help us to build big family");subtitleList.add("Share your thought with us");subtitleList.add("Give your rate and feedback");subtitleList.add("Terms and Conditions");subtitleList.add("About Us");
+        if(Constant.AdminLogin.equals("true")) {
+            titleList.add("Thêm Nhà Hàng");
+            titleList.add("Thêm Món Ăn");
+            titleList.add("Liên Lạc");
+            iconList.add(R.drawable.ic_baseline_add_business_24);
+            iconList.add(R.drawable.ic_baseline_post_add_24);
+            iconList.add(R.drawable.info);
+            subtitleList.add("Tên, Địa chỉ, Ảnh,...");
+            subtitleList.add("Tên, Giá món, Ảnh,...");
+            subtitleList.add("Kết nối qua MXH");
+        }
     }
 
     @NonNull
@@ -76,52 +84,19 @@ public class SidebarAdapter extends RecyclerView.Adapter<SidebarAdapter.UserView
     private static void performClick(Context ctx,DrawerLayout drawer,String title){
         drawer.closeDrawer(GravityCompat.START);
         switch (title) {
-            case "Join Us": {
-                Intent policy = new Intent(Intent.ACTION_VIEW);
-                policy.setData(Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSe8NQkJ52cEgE27Dsnsi6RnAhIdjEBMW0ea2S7WjTOMHvxZgw/viewform?usp=pp_url"));
+            case "Thêm Nhà Hàng": {
+                Intent policy = new Intent(ctx, AddRestaurant.class);
                 ctx.startActivity(policy);
                 break;
             }
-            case "Privacy Policy": {
-                Intent policy = new Intent(Intent.ACTION_VIEW);
-                policy.setData(Uri.parse("https://khanaforyou.blogspot.com/p/khana-khalo-privacy-policy.html"));
+            case "Thêm Món Ăn": {
+                Intent policy = new Intent(ctx,AddFood.class);
                 ctx.startActivity(policy);
                 break;
             }
-            case "Share App": {
-                try {
-                    Intent share = new Intent(Intent.ACTION_SEND);
-                    share.setType("text/plain");
-                    share.putExtra(Intent.EXTRA_SUBJECT,ctx.getResources().getString(R.string.app_name));
-                    String msg = "\nLet me recommend you this application\n\nhttps://play.google.com/store/apps/details?id=" + ctx.getPackageName();
-                    share.putExtra(Intent.EXTRA_TEXT, msg);
-                    ctx.startActivity(Intent.createChooser(share, "Share Via"));
-                } catch(Exception e) {
-                    e.fillInStackTrace();
-                }
-                break;
-            }
-            case "Contact Us": {
-                Intent c = new Intent(Intent.ACTION_VIEW);
-                c.setData(Uri.parse("https://khanaforyou.blogspot.com/p/contact.html"));
-                ctx.startActivity(c);
-                break;
-            }
-            case "Rate Us": {
+            case "Liên Lạc": {
                 Intent policy = new Intent(Intent.ACTION_VIEW);
-                policy.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + ctx.getPackageName()));
-                ctx.startActivity(policy);
-                break;
-            }
-            case "Terms and Conditions": {
-                Intent policy = new Intent(Intent.ACTION_VIEW);
-                policy.setData(Uri.parse("https://khanaforyou.blogspot.com/p/terms-and-conditions.html"));
-                ctx.startActivity(policy);
-                break;
-            }
-            case "About Us": {
-                Intent policy = new Intent(Intent.ACTION_VIEW);
-                policy.setData(Uri.parse("https://khanaforyou.blogspot.com"));
+                policy.setData(Uri.parse("https://www.facebook.com/thiensukin"));
                 ctx.startActivity(policy);
                 break;
             }

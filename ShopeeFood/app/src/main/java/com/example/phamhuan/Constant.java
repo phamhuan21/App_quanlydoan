@@ -18,4 +18,17 @@ public class Constant {
     public static final String Name = "Name";
     public static final String Phone = "Phone";
     public static final String Address = "Address";
+
+    //event restaurant
+    public static final String[] event = {
+            "Open",
+            "Close"
+    };
+    //event restaurant
+    public static final String[] type = {
+            "Phở",
+            "Cơm",
+            "Trà sữa",
+            "Đồ ăn vặt"
+    };
 }

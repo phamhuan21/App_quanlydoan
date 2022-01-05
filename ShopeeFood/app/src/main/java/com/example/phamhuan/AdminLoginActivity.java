@@ -22,6 +22,7 @@ public class AdminLoginActivity extends AppCompatActivity {
 
         private EditText adminphone,adminpass;
         private Button adminlogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,8 +79,8 @@ public class AdminLoginActivity extends AppCompatActivity {
                         Utils.setValue(AdminLoginActivity.this,Constant.IsLogin,Constant.IsLogin);
                         Utils.setValue(AdminLoginActivity.this,Constant.Mobile,adminphone.getText().toString());
                         Utils.setValue(AdminLoginActivity.this,Constant.Password,adminpass.getText().toString());
-                        Utils.setValue(AdminLoginActivity.this,Constant.AdminLogin,"true");
-                        Toast.makeText(AdminLoginActivity.this, "Chào mừng Quản Trị Viên đến với ứng dụng!" + Constant.AdminLogin, Toast.LENGTH_SHORT).show();
+                        Constant.AdminLogin = "true";
+                        Toast.makeText(AdminLoginActivity.this, "Chào mừng Quản Trị Viên đến với ứng dụng!" , Toast.LENGTH_SHORT).show();
                         Intent home = new Intent(AdminLoginActivity.this, HomeActivity.class);
                         Utils.currentUser = user; startActivity(home); finish();
                     } else {
