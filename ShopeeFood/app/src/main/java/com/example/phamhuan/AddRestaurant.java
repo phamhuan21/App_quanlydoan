@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -51,6 +52,7 @@ public class AddRestaurant extends AppCompatActivity {
     private TextView status,typerestaurant;
     private ImageView imageView;
     private Button addrestaurant,pickimage,addtype;
+   
     private ArrayList<String> type = new ArrayList<String>();
     private static final int RESULT_OK = -1;
     // permission image
@@ -64,6 +66,7 @@ public class AddRestaurant extends AppCompatActivity {
     private String[] storagePermissions;
     private Uri image_uri;
     private UploadTask uploadTask;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -178,6 +181,10 @@ public class AddRestaurant extends AppCompatActivity {
             Toast.makeText(this, "Bạn chưa thêm khoảng cách nhà hàng!", Toast.LENGTH_SHORT).show();
             return;
         }
+        if(Status.isEmpty()){
+            Toast.makeText(this, "Trạng thái nhà hàng không được để trống!", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if(type.isEmpty()){
             Toast.makeText(this, "Bạn chưa thêm loại nhà hàng!", Toast.LENGTH_SHORT).show();
             return;
@@ -207,18 +214,20 @@ public class AddRestaurant extends AppCompatActivity {
                                     String imageUrl = uri.toString();
                                     Integer charge_num = Integer.parseInt(charge.getText().toString());
                                     //createNewPost(imageUrl);
-                                    final HashMap<String, Object> cartMap = new HashMap<>();
-                                    cartMap.put("Charge", charge_num);
-                                    cartMap.put("Description", address.getText().toString());
-                                    cartMap.put("Distance", time.getText().toString() + "min");
-                                    cartMap.put("Image", imageUrl);
-                                    cartMap.put("Name", name.getText().toString());
-                                    cartMap.put("Status", status.getText().toString());
+
 
                                     //update to db
 
                                     for(int i = 0; i <type.size();i++){
                                         if(type.get(i).equals("Phở")){
+                                            final HashMap<String, Object> cartMap = new HashMap<>();
+
+                                            cartMap.put("Charge", charge_num);
+                                            cartMap.put("Description", address.getText().toString());
+                                            cartMap.put("Distance", time.getText().toString() + "min");
+                                            cartMap.put("Image", imageUrl);
+                                            cartMap.put("Name", name.getText().toString());
+                                            cartMap.put("Status", status.getText().toString());
                                             cartMap.put("Type", "Phở");
                                             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Phở");
                                             reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -231,8 +240,8 @@ public class AddRestaurant extends AppCompatActivity {
                                                                 @Override
                                                                 public void onSuccess(Void unused) {
                                                                     Toast.makeText(AddRestaurant.this, "Success!", Toast.LENGTH_SHORT).show();
-                                                                    clear();
-                                                                    return;
+
+
 
                                                                 }
                                                             })
@@ -255,21 +264,27 @@ public class AddRestaurant extends AppCompatActivity {
 
                                         }
                                         if(type.get(i).equals("Cơm")){
-                                            cartMap.remove("Type");
-                                            cartMap.put("Type", "Cơm");
+                                            final HashMap<String, Object> cartMaps = new HashMap<>();
+
+                                            cartMaps.put("Charge", charge_num);
+                                            cartMaps.put("Description", address.getText().toString());
+                                            cartMaps.put("Distance", time.getText().toString() + "min");
+                                            cartMaps.put("Image", imageUrl);
+                                            cartMaps.put("Name", name.getText().toString());
+                                            cartMaps.put("Status", status.getText().toString());
+                                            cartMaps.put("Type", "Cơm");
                                             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Cơm");
                                             reference.addListenerForSingleValueEvent(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                     int count = (int) snapshot.getChildrenCount();
 
-                                                    reference.child(String.valueOf(count)).updateChildren(cartMap)
+                                                    reference.child(String.valueOf(count)).updateChildren(cartMaps)
                                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                 @Override
                                                                 public void onSuccess(Void unused) {
                                                                     Toast.makeText(AddRestaurant.this, "Success!", Toast.LENGTH_SHORT).show();
-                                                                    clear();
-                                                                    return;
+
 
                                                                 }
                                                             })
@@ -291,21 +306,27 @@ public class AddRestaurant extends AppCompatActivity {
                                         }
 
                                         if(type.get(i).equals("Trà sữa")){
-                                            cartMap.remove("Type");
-                                            cartMap.put("Type", "Trà sữa");
+                                            final HashMap<String, Object> cartMapss = new HashMap<>();
+
+                                            cartMapss.put("Charge", charge_num);
+                                            cartMapss.put("Description", address.getText().toString());
+                                            cartMapss.put("Distance", time.getText().toString() + "min");
+                                            cartMapss.put("Image", imageUrl);
+                                            cartMapss.put("Name", name.getText().toString());
+                                            cartMapss.put("Status", status.getText().toString());
+                                            cartMapss.put("Type", "Trà sữa");
                                             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Trà sữa");
                                             reference.addListenerForSingleValueEvent(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                     int count = (int) snapshot.getChildrenCount();
 
-                                                    reference.child(String.valueOf(count)).updateChildren(cartMap)
+                                                    reference.child(String.valueOf(count)).updateChildren(cartMapss)
                                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                 @Override
                                                                 public void onSuccess(Void unused) {
                                                                     Toast.makeText(AddRestaurant.this, "Success!", Toast.LENGTH_SHORT).show();
-                                                                    clear();
-                                                                    return;
+
 
                                                                 }
                                                             })
@@ -327,21 +348,27 @@ public class AddRestaurant extends AppCompatActivity {
                                         }
 
                                         if(type.get(i).equals("Đồ ăn vặt")){
-                                            cartMap.remove("Type");
-                                            cartMap.put("Type", "Đồ ăn vặt");
+                                            final HashMap<String, Object> cartMapsss = new HashMap<>();
+
+                                            cartMapsss.put("Charge", charge_num);
+                                            cartMapsss.put("Description", address.getText().toString());
+                                            cartMapsss.put("Distance", time.getText().toString() + "min");
+                                            cartMapsss.put("Image", imageUrl);
+                                            cartMapsss.put("Name", name.getText().toString());
+                                            cartMapsss.put("Status", status.getText().toString());
+                                            cartMapsss.put("Type", "Đồ ăn vặt");
                                             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Đồ ăn vặt");
                                             reference.addListenerForSingleValueEvent(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                     int count = (int) snapshot.getChildrenCount();
 
-                                                    reference.child(String.valueOf(count)).updateChildren(cartMap)
+                                                    reference.child(String.valueOf(count)).updateChildren(cartMapsss)
                                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                 @Override
                                                                 public void onSuccess(Void unused) {
                                                                     Toast.makeText(AddRestaurant.this, "Success!", Toast.LENGTH_SHORT).show();
-                                                                    clear();
-                                                                    return;
+
 
                                                                 }
                                                             })
@@ -364,21 +391,28 @@ public class AddRestaurant extends AppCompatActivity {
                                     }
 
                                     //add to all " Tất cả "
-                                        cartMap.remove("Type");
-                                        cartMap.put("Type", "Tất cả");
+                                        final HashMap<String, Object> cartMapp = new HashMap<>();
+
+                                        cartMapp.put("Charge", charge_num);
+                                        cartMapp.put("Description", address.getText().toString());
+                                        cartMapp.put("Distance", time.getText().toString() + "min");
+                                        cartMapp.put("Image", imageUrl);
+                                        cartMapp.put("Name", name.getText().toString());
+                                        cartMapp.put("Status", status.getText().toString());
+                                        cartMapp.put("Type", "Tất cả");
                                         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Tất cả");
                                         reference.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 int count = (int) snapshot.getChildrenCount();
 
-                                                reference.child(String.valueOf(count)).updateChildren(cartMap)
+                                                reference.child(String.valueOf(count)).updateChildren(cartMapp)
                                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                             @Override
                                                             public void onSuccess(Void unused) {
                                                                 Toast.makeText(AddRestaurant.this, "Success!", Toast.LENGTH_SHORT).show();
                                                                 clear();
-                                                                return;
+
 
                                                             }
                                                         })
