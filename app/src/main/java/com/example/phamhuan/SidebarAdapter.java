@@ -34,14 +34,14 @@ public class SidebarAdapter extends RecyclerView.Adapter<SidebarAdapter.UserView
         if(Constant.AdminLogin.equals("true")) {
             titleList.add("Thêm Nhà Hàng");
             titleList.add("Thêm Món Ăn");
-            titleList.add("Liên Lạc");
             iconList.add(R.drawable.ic_baseline_add_business_24);
             iconList.add(R.drawable.ic_baseline_post_add_24);
-            iconList.add(R.drawable.info);
             subtitleList.add("Tên, Địa chỉ, Ảnh,...");
             subtitleList.add("Tên, Giá món, Ảnh,...");
-            subtitleList.add("Kết nối qua MXH");
         }
+        titleList.add("Liên Lạc");
+        iconList.add(R.drawable.info);
+        subtitleList.add("Kết nối qua MXH");
     }
 
     @NonNull

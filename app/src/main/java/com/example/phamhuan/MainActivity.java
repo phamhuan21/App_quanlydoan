@@ -131,23 +131,30 @@ public class MainActivity extends AppCompatActivity {
             table_user.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(logPhone.getText().toString()).exists()) {
+                    if(logPhone.getText().toString().equals("0968646031")){
                         progressDialog.dismiss();
-                        User user = dataSnapshot.child(logPhone.getText().toString()).getValue(User.class);
-                        assert user != null;
-                        user.setPhone(logPhone.getText().toString());
-                        if (user.getPassword().equals(logPassword.getText().toString())) {
-                            Utils.setValue(MainActivity.this,Constant.IsLogin,Constant.IsLogin);
-                            Utils.setValue(MainActivity.this,Constant.Mobile,logPhone.getText().toString());
-                            Utils.setValue(MainActivity.this,Constant.Password,logPassword.getText().toString());
-                            Intent home = new Intent(MainActivity.this, HomeActivity.class);
-                            Utils.currentUser = user; startActivity(home); finish();
-                        } else {
-                            Utils.showToast(MainActivity.this, "Số điện thoại hoặc mật khẩu sai!");
-                        }
+                        Toast.makeText(MainActivity.this, "Hi Admin, Vui lòng đăng nhập với admin login.", Toast.LENGTH_SHORT).show();
                     } else {
-                        progressDialog.dismiss();
-                        Utils.showToast(MainActivity.this, "Vui lòng đăng kí tài khoản!");
+                        if (dataSnapshot.child(logPhone.getText().toString()).exists()) {
+                            progressDialog.dismiss();
+                            User user = dataSnapshot.child(logPhone.getText().toString()).getValue(User.class);
+                            assert user != null;
+                            user.setPhone(logPhone.getText().toString());
+                            if (user.getPassword().equals(logPassword.getText().toString())) {
+                                Utils.setValue(MainActivity.this, Constant.IsLogin, Constant.IsLogin);
+                                Utils.setValue(MainActivity.this, Constant.Mobile, logPhone.getText().toString());
+                                Utils.setValue(MainActivity.this, Constant.Password, logPassword.getText().toString());
+                                Intent home = new Intent(MainActivity.this, HomeActivity.class);
+                                Utils.currentUser = user;
+                                startActivity(home);
+                                finish();
+                            } else {
+                                Utils.showToast(MainActivity.this, "Số điện thoại hoặc mật khẩu sai!");
+                            }
+                        } else {
+                            progressDialog.dismiss();
+                            Utils.showToast(MainActivity.this, "Vui lòng đăng kí tài khoản!");
+                        }
                     }
                 }
                 @Override

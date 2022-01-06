@@ -30,14 +30,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="21.5dp"
                     android:gravity="center_horizontal"
-                    android:text="@string/choose_payment_mode"
+                    android:text="Xác nhận đặt hàng ?"
+                    android:fontFamily="@font/shopee2021regular"
                     android:textColor="#333232"
                     android:textSize="23.3sp" />
                 <Button
                     android:id="@+id/cod"
-                    android:text="@string/cash_on_delivery"
+                    android:text="Đồng ý"
                     android:textColor="#ffffff"
                     android:textStyle="bold"
+                    android:fontFamily="@font/shopee2021regular"
+                    android:textAllCaps="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -45,8 +48,10 @@
                     android:textSize="15sp"/>
                 <Button
                     android:id="@+id/paytm"
-                    android:text="@string/paytm_upi_card"
+                    android:text="Hủy"
                     android:textColor="#ffffff"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/shopee2021regular"
                     android:textStyle="bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

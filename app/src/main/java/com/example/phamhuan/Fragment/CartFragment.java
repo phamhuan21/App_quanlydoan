@@ -207,15 +207,7 @@ public class CartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Intent i = new Intent(ctx, PaymentActivity.class);
-                Utils.cartList = cartList; Utils.paidAmount = Totalprice;
-                Utils.Address = Constant.Name + "- " + Name.getText().toString() + "\n" +
-                        Constant.Phone + "- " + Phone.getText().toString() + "\n" +
-                        Constant.Address + "- " + address.getText().toString();
-                startActivity(i);
-                CartList.clearAll(ctx);
-                maincart.setVisibility(View.GONE);
-                nocart.setVisibility(View.VISIBLE);
+
             }
         });
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
