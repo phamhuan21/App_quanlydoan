@@ -20,6 +20,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:id="@+id/catname"
+            android:fontFamily="@font/shopee2021regular"
             android:text="@string/name_of_shop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

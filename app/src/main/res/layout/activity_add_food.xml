@@ -4,26 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/anh_nen"
-   >
+    android:background="@drawable/foodbackground"
+
+    >
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/add_product_toolbar"
         android:layout_width="match_parent"
+        android:onClick="backpress"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Thêm nhà hàng" />
+        app:titleTextColor="@color/white"
+        app:title="Thêm món ăn" />
 
-    <ImageView
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_name_1"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="40dp"
         android:src="@mipmap/logo_circle"
+        app:civ_border_color="#ffffff"
+        app:civ_border_width="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/add_product_toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ScrollView
@@ -38,7 +44,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/img_icon"
+                android:id="@+id/btn_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -46,7 +52,9 @@
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/blue"
                 android:padding="10dp"
-                android:text="Chọn ảnh nhà hàng"
+                android:text="Chọn ảnh món ăn"
+                android:fontFamily="@font/shopee2021regular"
+                android:textColor="@color/white"
                 android:textAllCaps="false"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -55,8 +63,27 @@
                 app:layout_constraintTop_toBottomOf="@id/add_product_toolbar"
                 app:layout_constraintVertical_bias=".2"
                 app:layout_constraintWidth_percent=".4" />
+            <TextView
+                android:id="@+id/list_retaurants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/input_product"
+                android:drawableStart="@drawable/ic_baseline_format_list_bulleted_24"
+                android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
+                android:drawablePadding="10dp"
+                android:hint="Danh sách nhà hàng"
+                android:fontFamily="@font/shopee2021regular"
+                android:padding="10dp"
+                android:textColorHint="#565656"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/img_icon"
+                app:layout_constraintStart_toStartOf="@+id/img_icon"
+                app:layout_constraintTop_toBottomOf="@+id/img_icon" />
             <EditText
-                android:id="@+id/add_name_product"
+                android:id="@+id/food_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -65,7 +92,8 @@
                 android:background="@drawable/input_product"
                 android:drawableLeft="@drawable/ic_baseline_title_24"
                 android:drawablePadding="10dp"
-                android:hint="Tên nhà hàng"
+                android:hint="Tên món ăn"
+                android:fontFamily="@font/shopee2021regular"
                 android:padding="10dp"
                 android:textColorHint="#565656"
                 android:textSize="20dp"
@@ -73,77 +101,38 @@
                 app:layout_constraintStart_toStartOf="@+id/img_icon"
                 app:layout_constraintTop_toBottomOf="@+id/img_icon" />
 
-
-
             <EditText
-                android:id="@+id/add_desc_product"
+                android:id="@+id/food_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/input_product"
-                android:drawableLeft="@drawable/ic_baseline_location_on_24"
+                android:drawableLeft="@drawable/ic_baseline_attach_money_24"
                 android:drawablePadding="10dp"
-                android:hint="Địa chỉ"
+                android:hint="Giá tiền"
+                android:fontFamily="@font/shopee2021regular"
                 android:padding="10dp"
+                android:inputType="number"
                 android:textColorHint="#565656"
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="@+id/add_name_product"
                 app:layout_constraintStart_toStartOf="@+id/add_name_product"
                 app:layout_constraintTop_toBottomOf="@+id/add_name_product" />
 
-            <EditText
-                android:id="@+id/add_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/input_product"
-                android:drawableLeft="@drawable/ic_baseline_access_time_24"
-                android:drawablePadding="10dp"
-                android:hint="Thời gian"
-                android:inputType="number"
-                android:padding="10dp"
-                android:textColorHint="#565656"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="@+id/add_desc_product"
-                app:layout_constraintStart_toStartOf="@+id/add_desc_product"
-                app:layout_constraintTop_toBottomOf="@+id/add_desc_product" />
-            <EditText
-                android:id="@+id/add_status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/input_product"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"
-                android:drawablePadding="10dp"
-                android:drawableLeft="@drawable/ic_baseline_restaurant_menu_24"
-                android:hint="Trạng thái"
-                android:padding="10dp"
-                android:textSize="20dp"
-                android:textColorHint="#565656"
-                app:layout_constraintEnd_toEndOf="@+id/img_icon"
-                app:layout_constraintStart_toStartOf="@+id/img_icon"
-                app:layout_constraintTop_toBottomOf="@+id/img_icon" />
-
-
-
-
-
             <Button
-                android:id="@+id/add_restaurant"
+                android:id="@+id/add_food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="#FF0000"
                 android:padding="15dp"
-                android:text="Thêm nhà hàng"
+                android:text="Thêm món ăn"
                 android:textSize="20sp"
+                android:textColor="@color/white"
                 android:textAllCaps="false"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"

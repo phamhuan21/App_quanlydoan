@@ -52,7 +52,7 @@ public class AddRestaurant extends AppCompatActivity {
     private TextView status,typerestaurant;
     private ImageView imageView;
     private Button addrestaurant,pickimage,addtype;
-   
+
     private ArrayList<String> type = new ArrayList<String>();
     private static final int RESULT_OK = -1;
     // permission image
@@ -66,6 +66,7 @@ public class AddRestaurant extends AppCompatActivity {
     private String[] storagePermissions;
     private Uri image_uri;
     private UploadTask uploadTask;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,7 @@ public class AddRestaurant extends AppCompatActivity {
                 finish();
             }
         });
+        progressDialog = new ProgressDialog(AddRestaurant.this);
         //add restaurant
         name = findViewById(R.id.add_name_product);
         address = findViewById(R.id.add_desc_product);
@@ -195,6 +197,9 @@ public class AddRestaurant extends AppCompatActivity {
     }
 
     private void addtofirebase() {
+        progressDialog.setMessage("Vui lòng chờ ....");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
 
         String timestamp = "" + System.currentTimeMillis();
 
@@ -239,9 +244,8 @@ public class AddRestaurant extends AppCompatActivity {
                                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                 @Override
                                                                 public void onSuccess(Void unused) {
+                                                                    progressDialog.dismiss();
                                                                     Toast.makeText(AddRestaurant.this, "Success!", Toast.LENGTH_SHORT).show();
-
-
 
                                                                 }
                                                             })
