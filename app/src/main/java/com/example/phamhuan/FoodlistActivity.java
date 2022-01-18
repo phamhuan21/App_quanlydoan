@@ -3,6 +3,7 @@ package com.example.phamhuan;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -158,7 +159,31 @@ public class FoodlistActivity extends AppCompatActivity {
                     viewHolder.Edit.setVisibility(View.VISIBLE);
                     viewHolder.Delete.setVisibility(View.VISIBLE);
                 }
-                viewHolder.Edit
+                viewHolder.Edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        DatabaseReference db = FirebaseDatabase.getInstance().getReference(Utils.categoryData.getName());
+                        ValueEventListener eventListener = new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                                    String name = ds.getKey();
+                                    getkey.add(name);
+                                    Intent intent = new Intent(FoodlistActivity.this,EditFoodActivity.class);
+                                    intent.putExtra("keyvalue",getkey.get(0));
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                Toast.makeText(FoodlistActivity.this, "" + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        };
+                        db.addListenerForSingleValueEvent(eventListener);
+
+                    }
+                });
                 viewHolder.Delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
