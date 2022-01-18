@@ -4,8 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.phamhuan.SearchActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -36,12 +42,24 @@ public class HomeFragment extends Fragment {
     private Context ctx;
     private RecyclerView recyclerView;
     private FirebaseRecyclerAdapter<Kitchen, KitchenViewHolder> adapter;
-
+    EditText searchbox;
+    private List<Kitchen> kitchenList;
+    private RecyclerView recyclerViewsearch;
+    private Kitchen kitchen;
+    private Button search;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home,container,false); ctx = getContext();
 
+        search = view.findViewById(R.id.btn_search);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),SearchActivity.class);
+                startActivity(intent);
+            }
+        });
         RecyclerView recycler  = view.findViewById(R.id.recycler_cate); recycler.setHasFixedSize(true);
         LinearLayoutManager manager = new LinearLayoutManager(ctx,LinearLayoutManager.HORIZONTAL,false);
         recycler.setLayoutManager(manager); CategoryAdapter categoryAdapter = new CategoryAdapter(ctx);
@@ -113,6 +131,8 @@ public class HomeFragment extends Fragment {
         };
         recyclerView.setAdapter(adapter);
     }
+
+
 
     private class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.UserViewHolder> {
         private List<String> titleList;

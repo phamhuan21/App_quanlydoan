@@ -1,17 +1,24 @@
 package com.example.phamhuan;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,26 +27,36 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.example.phamhuan.ModelClass.Cart;
 import com.example.phamhuan.ModelClass.Food;
+import com.example.phamhuan.ModelClass.Kitchen;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class FoodlistActivity extends AppCompatActivity {
 
+    Context context;
     private int finalcount = 0;
     private int finalprice = 0;
     private RecyclerView recyclerView;
     private FirebaseRecyclerAdapter<Food,FoodViewHolder> adapter;
-
+    private ArrayList<String> getkey = new ArrayList<>();
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_foodlist);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        progressDialog = new ProgressDialog(FoodlistActivity.this);
         setSupportActionBar(toolbar); Utils.showCart = false;
         Objects.requireNonNull(getSupportActionBar()).setTitle(Utils.categoryData.getName());
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -101,6 +118,7 @@ public class FoodlistActivity extends AppCompatActivity {
         public TextView FoodQuantity;
         public Button Minus,Plus;
         public EditText FoodCount;
+        public ImageButton Delete,Edit;
         public FoodViewHolder(View itemView) {
             super(itemView);
             FoodName = itemView.findViewById(R.id.food_name);
@@ -110,6 +128,8 @@ public class FoodlistActivity extends AppCompatActivity {
             Minus = itemView.findViewById(R.id.minus);
             Plus = itemView.findViewById(R.id.add);
             FoodCount = itemView.findViewById(R.id.cartcount);
+            Delete = itemView.findViewById(R.id.delete_food);
+            Edit = itemView.findViewById(R.id.edit_food);
         }
     }
 
@@ -134,6 +154,76 @@ public class FoodlistActivity extends AppCompatActivity {
                 viewHolder.FoodPrice.setText( String.valueOf(model.getPrice()) + "₫");
                 viewHolder.FoodQuantity.setText(model.getQuantity());
                 final int[] count = {0}; final int[] price = {0};
+                if(Constant.AdminLogin.equals("true")){
+                    viewHolder.Edit.setVisibility(View.VISIBLE);
+                    viewHolder.Delete.setVisibility(View.VISIBLE);
+                }
+                viewHolder.Edit
+                viewHolder.Delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(FoodlistActivity.this);
+                        builder.setTitle("Xóa món ăn")
+                                .setMessage("Bạn có muốn xóa món ăn này khỏi menu ?")
+                                .setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .setPositiveButton("Ok", null)
+                                .show();
+                        Button positivebutton = builder.show().getButton(AlertDialog.BUTTON_POSITIVE);
+                        positivebutton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                progressDialog.setMessage("Vui lòng chờ ....");
+                                progressDialog.setCanceledOnTouchOutside(false);
+                                progressDialog.show();
+
+                                DatabaseReference db = FirebaseDatabase.getInstance().getReference(Utils.categoryData.getName());
+                                ValueEventListener eventListener = new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                                            String name = ds.getKey();
+                                            getkey.add(name);
+                                            db.child(getkey.get(0).toString()).removeValue()
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void unused) {
+                                                            getkey.clear();
+                                                            progressDialog.dismiss();
+                                                            finish();
+
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(FoodlistActivity.this, "" +e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+                                        Toast.makeText(FoodlistActivity.this, "" + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                };
+                                db.addListenerForSingleValueEvent(eventListener);
+
+
+
+
+                            }
+                        });
+                    }
+
+                });
                 viewHolder.FoodCount.setText("0");
                 viewHolder.Minus.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -168,6 +258,7 @@ public class FoodlistActivity extends AppCompatActivity {
         };
         recyclerView.setAdapter(adapter);
     }
+
 
     private void calculate() {
         LinearLayout cart = findViewById(R.id.cart);

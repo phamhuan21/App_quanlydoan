@@ -10,12 +10,11 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/add_product_toolbar"
         android:layout_width="match_parent"
-        android:onClick="backpress"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="@color/white"
+        android:background="?attr/colorPrimary"
         app:title="Thêm món ăn" />
 
 
@@ -23,7 +22,7 @@
         android:id="@+id/img_name_1"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="70dp"
         android:src="@mipmap/logo_circle"
         app:civ_border_color="#ffffff"
         app:civ_border_width="2dp"

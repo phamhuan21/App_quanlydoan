@@ -3,26 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <EditText
-        android:id="@+id/search_box"
+    <Button
+        android:id="@+id/btn_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:background="@drawable/search_bg"
-        android:drawableLeft="@drawable/ic_baseline_search_24"
-        android:drawablePadding="5dp"
-        android:elevation="3dp"
-        android:hint="Bạn ăn gì hôm nay ?"
-        android:padding="13dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/search_rec"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" />
-
+        android:text="Tìm kiếm sản phẩm"
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_cate"
         android:layout_marginTop="50dp"

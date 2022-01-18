@@ -72,5 +72,27 @@
                 android:layout_height="40dp"
                 android:background="@drawable/ic_add"/>
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/box"
+            android:layout_alignParentEnd="true"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/delete_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:src="@drawable/ic_baseline_delete_24"
+                android:backgroundTint="@color/white"/>
+            <ImageButton
+                android:id="@+id/edit_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:src="@drawable/ic_baseline_edit_24"
+                android:backgroundTint="@color/white"/>
+        </LinearLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

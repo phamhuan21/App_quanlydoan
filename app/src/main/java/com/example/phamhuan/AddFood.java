@@ -71,10 +71,10 @@ public class AddFood extends AppCompatActivity {
         toolbar = findViewById(R.id.add_product_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setTitle("Thêm món ăn");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // event when click home button
                 finish();
             }
         });
