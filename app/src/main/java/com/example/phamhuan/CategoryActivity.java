@@ -105,7 +105,7 @@ public class CategoryActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent foodlist = new Intent(CategoryActivity.this, FoodlistActivity.class);
                         Utils.categoryData = category;
-                        startActivity(foodlist); onBackPressed();
+                        startActivity(foodlist);
                     }
                 });
             }

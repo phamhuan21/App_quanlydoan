@@ -10,13 +10,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ImageView
             android:id="@+id/food_image"
-            android:src="@drawable/thumb"
-            android:scaleType="fitXY"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:contentDescription="@string/todo"/>
+            android:contentDescription="@string/todo"
+            android:scaleType="fitXY"
+            android:src="@drawable/thumb" />
         <LinearLayout
             android:padding="5dp"
             android:layout_toStartOf="@id/box"

@@ -63,6 +63,16 @@ public class FoodlistActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setSubtitle(Utils.categoryData.getDescription());
+        if(Constant.AdminLogin.equals("true")){
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(FoodlistActivity.this,HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+        }
 //        TextView foodprice = findViewById(R.id.foodprice);
 //        foodprice.setText(String.valueOf(Utils.categoryData.getDefaultPrice()) + "₫");
 //        Button mi = findViewById(R.id.minu); Button ad = findViewById(R.id.ad);
@@ -172,6 +182,12 @@ public class FoodlistActivity extends AppCompatActivity {
                                     getkey.add(name);
                                     Intent intent = new Intent(FoodlistActivity.this,EditFoodActivity.class);
                                     intent.putExtra("keyvalue",getkey.get(0));
+                                    intent.putExtra("Name",viewHolder.FoodName.getText().toString());
+                                    intent.putExtra("Price",String.valueOf(model.getPrice()));
+                                    intent.putExtra("Image",model.getImage());
+                                    intent.putExtra("Restaurant",Utils.categoryData.getName());
+                                    startActivity(intent);
+                                    onBackPressed();
                                 }
                             }
 

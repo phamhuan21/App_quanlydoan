@@ -4,6 +4,140 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditFoodActivity">
+    android:background="@drawable/edit_food_bg"
 
+    >
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/add_product_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="?attr/colorPrimary"
+        app:title="Sửa món ăn" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_name_1"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="70dp"
+        android:src="@mipmap/logo_circle"
+        app:civ_border_color="#ffffff"
+        app:civ_border_width="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="200dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/blue"
+                android:padding="10dp"
+                android:text="Chọn ảnh món ăn"
+                android:fontFamily="@font/shopee2021regular"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/add_product_toolbar"
+                app:layout_constraintVertical_bias=".2"
+                app:layout_constraintWidth_percent=".4" />
+            <TextView
+                android:id="@+id/list_retaurants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/input_product"
+                android:drawableStart="@drawable/ic_baseline_format_list_bulleted_24"
+                android:drawablePadding="10dp"
+                android:hint="Nhà hàng"
+                android:fontFamily="@font/shopee2021regular"
+                android:padding="10dp"
+                android:textColorHint="#565656"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/img_icon"
+                app:layout_constraintStart_toStartOf="@+id/img_icon"
+                app:layout_constraintTop_toBottomOf="@+id/img_icon" />
+            <EditText
+                android:id="@+id/food_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/input_product"
+                android:drawableLeft="@drawable/ic_baseline_title_24"
+                android:drawablePadding="10dp"
+                android:hint="Tên món ăn"
+                android:fontFamily="@font/shopee2021regular"
+                android:padding="10dp"
+                android:textColorHint="#565656"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/img_icon"
+                app:layout_constraintStart_toStartOf="@+id/img_icon"
+                app:layout_constraintTop_toBottomOf="@+id/img_icon" />
+
+            <EditText
+                android:id="@+id/food_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/input_product"
+                android:drawableLeft="@drawable/ic_baseline_attach_money_24"
+                android:drawablePadding="10dp"
+                android:hint="Giá tiền"
+                android:fontFamily="@font/shopee2021regular"
+                android:padding="10dp"
+                android:inputType="number"
+                android:textColorHint="#565656"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/add_name_product"
+                app:layout_constraintStart_toStartOf="@+id/add_name_product"
+                app:layout_constraintTop_toBottomOf="@+id/add_name_product" />
+
+            <Button
+                android:id="@+id/add_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="#00FF19"
+                android:padding="15dp"
+                android:text="Cập nhật"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:textAllCaps="false"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/add_status"
+                app:layout_constraintVertical_bias=".2"
+                app:layout_constraintWidth_percent=".4" />
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
